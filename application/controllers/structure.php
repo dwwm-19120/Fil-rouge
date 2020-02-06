@@ -10,4 +10,5 @@ class Structure extends CI_Controller
   {
       $this->template->display('acceuil');
   }
+  
 }
