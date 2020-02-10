@@ -1,3 +1,4 @@
+<body>
 <header>
 <div class="container">
 <div class="col-12">
@@ -9,15 +10,15 @@
     <div class="container">
     <div class="row">
     <ul>
-        <li><a href=""></a>infos</li>
-        <li><a href=""></a>Espace Client</li>
+        <li><a href="">infos</a></li>
+        <li><a href="">Espace Client</a></li>
         <li><a href=""><img src="<?= base_url('assets/img/').'picto panier.png'?>" alt=""></a></li>
         <li><img src="<?= base_url('assets/img/').'picto pays.png'?>" alt=""></li><!--menue bootstap lang-->
     </ul>
     </div>
     <div class="row">
     <ul>
-        <li><a href=""></a>Produits</li>
+        <li><a href="">Produits</a></li>
         <li><a href="">Service</a></li>
         <li><a href="">Aide</a></li>
         <li><a href="">A propos</a></li>
@@ -41,3 +42,4 @@
 </div>
 </div>
 </header>
+

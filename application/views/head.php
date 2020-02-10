@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url("assets/css/")."style.css" ;?>">
-    <title><?=$title?></title>
+    <title>village green</title>
 </head>
 
     
