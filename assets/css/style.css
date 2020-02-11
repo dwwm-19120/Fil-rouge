@@ -1,3 +1,138 @@
-body{
-    background-color: #cccccc;
+/*
+	=1 logo accueil
+	=2 Navbar
+	=3 Dropbox - Modal
+	=A Notes
+
+*/
+
+
+/*=1 logo accueil*/
+	figure{
+		z-index:1;
+		margin:0;
+		padding:0;
+		top:0;
+		display:block;
+		position:absolute;
+	}
+
+	figure>a,img{
+		display:inline-block;
+		margin:0;
+		padding:0;
+	}
+
+	[title="logo"]{
+		width:100%;
+		height:auto;
+	}
+
+/*=2 Navbar*/
+	.active{font-size:1.25rem;}
+	.navbar{padding-top:0 !important;}
+	nav:nth-of-type(1){}
+	.thirdNav{background: #303030;
+		padding:0;
 }
+
+
+/*=3 Dropbox*/
+	/*general*/
+	[data-toggle="dropdown"]{
+		padding:0;
+		margin:0;
+		background:transparent;
+		border:none;
+		font-weight:400;
+		font-size:1.25rem;
+	}
+
+	.drop-link {
+		font-weight:400;
+		font-size:.75rem;
+		color:#000;
+	}
+
+	/*dropbox client*/
+	.firstNav .dropdown-menu{
+		padding:5px;
+		border-radius:4px;
+		background:#e8e8e8;
+		width:480px;
+		height:auto;
+		column-count:2;
+		box-shadow:5px 5px 5px #949494;
+		left:-155px} /*pour left, écrasez la val de bootstrap*/
+
+		.firstNav [data-toggle="dropdown"] {
+			color:#9c4012;
+		}
+
+		.drop-connexion{
+			border-right:1px solid #d4d4d4;
+		}
+
+		.drop-inscription,.drop-connexion{
+			padding:10px;
+		}
+
+		.drop-inscription,.drop-connexion>label,input,span{
+			font-size:.85rem;
+		}
+
+		.drop-connexion,.drop-inscription:not(input,[for="always"],[name="always"]){
+			text-align:center;
+		}
+
+		form>button{
+			width:100%;
+		}
+
+		form>p{
+			font-size:.75rem;
+			text-align:left;
+		}
+
+		form>span{
+			display:inline-flex;
+			text-align:center;
+			padding-bottom:10px;
+		}
+
+	/*dropbox produits*/
+	.thirdNav .dropdown-menu:nth-of-type(1){
+		padding:10px;
+		border-radius:4px;
+		background:#e8e8e8;
+		width:160px;
+		height:auto;
+		column-count:1;
+		box-shadow:5px 5px 5px #949494;
+		left:-25px;
+	}
+
+	.thirdNav [data-toggle="dropdown"] {
+		color:whitesmoke;
+	}
+
+
+/* Media query */
+
+/*
+	=A
+
+	class="void":
+	N'as rien à voir avec void que l'ont trouve dans le C++ etc, ici c'est juste pour me rappeler
+	de ne rien mettre entre le span, ce span empeche l'esthétique du button de se formée tout en conservant
+	ces attributs.	
+
+	style:background:<?php echo base_url...?>:
+	Ici je place les images servants aux décords, la raison est que je ne veut pas les instancier dans 
+	la structure HTML afin d'évité un éventuel target des outils réservée aux personnes handicapée,
+	de plus il est inutile de les tagger pour le SEO. La structure du MVC empèche de les instancier dans
+	un simple fichier CSS. l'autre façon de les instanciers serait de faire de php un préprocesseur.
+
+*/
+
+

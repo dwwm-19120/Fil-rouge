@@ -1,0 +1,18 @@
+
+#	images
+-- Changer les urls des images, pas d'espace
+-- Compresser aux possibles ces images
+
+#	Frontend
+-- ARIA ou tablindex sur chaque vue
+-- Chekcked la norme WCAG2
+-- Ajoutez les breakpoints
+-- Ajoutez media query pour les dimension >578px
+-- Session performances sur chaque vue
+-- Vérifiez la compabilitée entre chaque navigateurs suivants: chrome, IE8, IEDGE, firefox, android 
+-- Optimisez SEO
+-- Corizé lé fote
+
+
+#	Une fois terminez 
+-- Compressez et minifier le css
