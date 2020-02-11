@@ -10,5 +10,11 @@ class Structure extends CI_Controller
   {
       $this->template->display('acceuil');
   }
-  
+  //-----------------------------------------------MENTION LEGALE----------------------------------
+  public function info()
+  {
+      $this->template->display('infos');
+  }
+
+
 }
