@@ -20,7 +20,7 @@
 	figure>a,img{
 		display:inline-block;
 		margin:0;
-		padding:0;
+		padding:0 !important;
 	}
 
 	[title="logo"]{
@@ -31,7 +31,7 @@
 /*=2 Navbar*/
 	.active{font-size:1.25rem;}
 	.navbar{padding-top:0 !important;}
-	nav:nth-of-type(1){}
+
 	.thirdNav{background: #303030;
 		padding:0;
 }
