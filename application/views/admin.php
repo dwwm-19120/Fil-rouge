@@ -8,34 +8,23 @@
 -liste fournisseurs
 -liste produit
 -liste client
+-ajoute du personnel
 
 /!\ cette partie utilise un autre template qui ne prend ni le header ni le footer /!\
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
-<header>
-<div class="container">
-<!--titre-->
-    <div class="text-center">
-        <h1>bienvenue <!--$identifiant--> sur l'espace administrateur </h1>
-    </div>
-<!--bouton deconnexion et retour a la partie visible du site-->
-    <div class="float-right">
-            <a href="<?= site_url('');?>" title="acceuil" class="btn btn-outline-dark"><i class="fas fa-home"></i></a>
-            <a href="<?= site_url('');?>" title="deconnexion" class="btn btn-outline-dark"><i class="fas fa-power-off"></i></a>
-    </div>
-</div>
-<!--libre a vous de rajouté des trucs jai plus d'inspi lol T_T-->
-</header>
+
 <div class="container col-4">
 <div class="col-12">
 <div class="row">
     <h2><u>menue</u></h2>
     <br>
     <ul>
-        <li><a href="">ajouter un produit</a></li>
+        <li><a href="<?= site_url('administration/ajout');?>">ajouter un produit</a></li>
         <li><a href="">espace facturation</a></li>
         <li><a href="">espace commande</a></li>
         <li><a href="">espace fournisseur</a></li>
         <li><a href="">espace relation clients</a></li>
+        <li><a href="">ajout de personnel</a></li>
     </ul>
 </div>
 </div>
