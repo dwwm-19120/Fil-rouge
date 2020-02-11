@@ -63,7 +63,7 @@
                             <li class="nav-item active col-xs-3"><a class="nav-link" href="">Produits</a></li>
                             <li class="nav-item active col-xs-3"><a class="nav-link" href="">Service</a></li>
                             <li class="nav-item active col-xs-3"><a class="nav-link" href="">Aide</a></li>
-                            <li class="nav-item active col-xs-3"><a class="nav-link" href="">A propos</a></li>
+                            <li class="nav-item active col-xs-3"><a class="nav-link" href="<?=site_url('structure/info');?>">A propos</a></li>
                         </ul>
                     </nav>
                 </div>
