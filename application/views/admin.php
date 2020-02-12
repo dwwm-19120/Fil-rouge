@@ -24,7 +24,7 @@
         <li><a href="">espace commande</a></li>
         <li><a href="">espace fournisseur</a></li>
         <li><a href="">espace relation clients</a></li>
-        <li><a href="">ajout de personnel</a></li>
+        <li><a href="<?= site_url('administration/incsrip_personel');?>">ajout de personnel</a></li>
     </ul>
 </div>
 </div>
