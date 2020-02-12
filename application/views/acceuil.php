@@ -1,5 +1,4 @@
-<div class="container">
-<div class="col-12">
+    <main class="col-12">
 <div class="row">
 <!------------------------------------------------------PROMO------------------------------------------------------------------>
     <div class="container">
@@ -37,5 +36,5 @@
     <div class="container">
     </div>
 </div><!--row-->
-</div><!--col-->
-</div><!--container-->
+    </main><!--col-->
+
