@@ -39,3 +39,6 @@
 </div><!--row-->
 </div><!--col-->
 </div><!--container-->
+<?php
+var_dump($_SESSION['info']);
+?>

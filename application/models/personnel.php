@@ -4,9 +4,9 @@ class Personnel extends CI_model
     /*
     -----------------------------------------------requete de recuperation info personnel--------------------------------------------
     */
-    public function accountAdm($email)
+    public function accountAdm($id)
     {
-        $account=$this->db->where("pers_mail",$email)->get('personnels'); 
+        $account=$this->db->where("pers_identif",$id)->get('personnels'); 
         if(!$account->result()){
             return false;
          }else{

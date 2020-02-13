@@ -14,6 +14,9 @@ class Administration extends CI_Controller
   */
   public function idpersonnel()
   {
+    if($this->session->userdata('admin')!=true)
+    {
+
     $result[]=$this->input->post();
     $this->form_validation->set_error_delimiters('<div class=" mr-auto ml-auto">','</div>');
     $this->form_validation->set_rules('identifiant','identifiant','required',array('required'=>'veuillez saisir votre identifiant'));
@@ -26,12 +29,12 @@ class Administration extends CI_Controller
     elseif($autorisation==false)
     {
         $this->session->set_flashdata('errorId','Identifiant incorrect');
-        $this->template->display('idpersonnel');
+        $this->template->display('idAdmin');
     }
     elseif(!password_verify($this->input->post('mot_de_passe'),$autorisation->pers_mdp))
     {
         $this->session->set_flashdata('errorMdp', 'Mot de passe incorrect');
-        $this->template->display('idpersonnel');
+        $this->template->display('idAdmin');
     }
     /*elseif($autorisation->cli_id>10)
     {
@@ -40,9 +43,23 @@ class Administration extends CI_Controller
     else
     {
         $this->session->set_userdata('admin', TRUE);
-        $this->session->set_userdata('id',$autorisation ->pers_id);
+        $this->session->set_userdata('info',$autorisation);
         redirect('administration/admin');
     }
+  }
+  else
+  {
+    redirect('administration/admin');
+  }
+  }
+  /*
+  ------------------------------------------------------------DECONNEXION ADMIN ----------------------------------------------------------
+  */
+  public function decopersonnel()
+  {
+    $this->session-> unset_userdata('admin','info');
+    $this ->session->sess_destroy();
+    $this->template->display('acceuil');
   }
   /*
   -----------------------------------------------PARTI ADMIN -------------------------------------------

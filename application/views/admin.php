@@ -1,4 +1,5 @@
 <!----------------------------------------------------PARTIE ADMIN---------------------------------------------------------------------------------------------------------------------
+- proteger par une session
 -ajout de produit
 -supression/modif produit
 -commande produit
@@ -13,6 +14,10 @@
 /!\ cette partie utilise un autre template qui ne prend ni le header ni le footer /!\
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
 
+<?php
+if (isset($_SESSION["admin"]) && ($_SESSION["admin"]) == true)
+{
+?>
 <div class="container col-4">
 <div class="col-12">
 <div class="row">
@@ -74,3 +79,10 @@
 </div>
 </div>
 </div>
+<?php
+}
+else
+{
+    redirect('structure/acceuil');
+}
+?>
