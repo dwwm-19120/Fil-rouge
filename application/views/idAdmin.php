@@ -1,7 +1,7 @@
 <div class="text-center identification ">
 <fieldset class= "d-inline-flex p-2 ">
 <?php echo form_open("administration/idpersonnel",'class="form_control"');?>
-    <a href="<?php echo site_url('jarditou/acceuil');?>"><img src="<?php echo base_url('assets/img/')."jarditou_logo.jpg" ?>" alt="logo jarditout" class="mb-4 img-fluid" width="200"></a>
+<br>
     <h2>connexion admin</h2>
      <div>
         <label for="nom" class="sr-only">nom</label>

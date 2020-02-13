@@ -62,5 +62,4 @@
     <div class="container">
     </div>
 
-    </main><!--col-->
-
+ </main><!--col-->

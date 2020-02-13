@@ -34,5 +34,5 @@
 </article>
 </section>
 <div class=text-right>
-<a href="<?php echo site_url('administration/admin');?>">l'equipe</a>
+<a href="<?php echo site_url('administration/idpersonnel');?>">l'equipe</a>
 </div>
