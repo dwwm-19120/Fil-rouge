@@ -14,6 +14,18 @@ class Personnel extends CI_model
          }
     }
 /*
+----------------------------------------------requete de verif pour inscription----------------------------------------------------------------
+*/
+    public function accountAdm1($mail)
+    {
+        $account=$this->db->where("pers_mail",$mail)->get('personnels'); 
+        if(!$account->result()){
+            return false;
+         }else{
+          return $account->row();
+         }
+    }
+/*
 ---------------------------------------------------- ajouter un personnel-----------------------------------
 */
 

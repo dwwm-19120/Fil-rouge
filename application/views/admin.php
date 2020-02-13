@@ -21,7 +21,7 @@ if (isset($_SESSION["admin"]) && ($_SESSION["admin"]) == true)
 <div class="container col-4">
 <div class="col-12">
 <div class="row">
-    <h2><u>menue</u></h2>
+    <h2><u>menu</u></h2>
     <br>
     <ul>
         <li><a href="<?= site_url('administration/ajout');?>">ajouter un produit</a></li>
