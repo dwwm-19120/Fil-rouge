@@ -13,10 +13,14 @@ body {
 	overflow-x:hidden;
 	background: url("assets/img/background_village.png");
 	background-repeat: no-repeat;
-}
-.wrap {
+	z-index: 1;}
+
+	.wrap {
 	background-color: #e6e6e6;
-}
+	z-index: 2;}
+
+
+
 /*=1 logo accueil*/
 	figure{
 		z-index:1;
@@ -27,11 +31,7 @@ body {
 		display:block;
 	}
 
-	figure>a,img{
-		display:inline-block;
-		margin:0;
-		padding:0 !important;
-	}
+
 
 	[title="logo"]{
 		width:125%;
@@ -56,6 +56,8 @@ body {
 
 	.navbar{padding-top:0 !important;}
 
+
+	.secondNav{background:#666666;}
 	.thirdNav{background: #303030;
 		padding:0;
 }
@@ -140,11 +142,67 @@ body {
 	.thirdNav [data-toggle="dropdown"] {
 		color:whitesmoke;
 	}
+/*	images	*/
+	[alt] {
+		transition:all .2s;
+		display: inline-flex;
+	}
+	[alt="Gibson Ibanez -15%"],[alt="conditions"] {
+		width: 100%;
+	}
+	[alt="information livraison"] {
+		width: 128%;
+	}
 
+	.ventes-link,.partenaires-link {
+		width:90%;
+	}
 /*	liens	*/
 
 
-/* Media query */
+/**************************************** Media query ********************************************/
+
+@media (min-width: 1200px) and (max-width: 1920px) {
+	.container {
+		width: 100%;
+		max-width: 1250px;
+	}
+	header>.container {
+	margin-left:auto !important;
+	margin-right:auto !important;
+	padding-right:15px;
+	padding-left:15px;
+	}
+
+	[alt="information livraison"] {
+		width:126%;
+	}
+	figure>a+img {
+		display: inline-flex;
+	}
+}
+
+/*Là où Bootstraps ne passe pas*/
+
+@media (min-width: 992px) and (max-width: 1199px) { 
+	[alt="information livraison"] {
+	width: 132%;}
+	}
+	div:nth-of-type(2)>figure>a>[alt]{
+		width: 70%;
+	}
+
+
+@media (min-width: 768px) and (max-width: 991px) { 
+	[alt="information livraison"] {
+    width: 143%;}
+	}
+
+@media (min-width: 576px) and (max-width: 767px) {
+	[alt="information livraison"] {
+	width: 161%;}
+	}
+
 
 /*
 	=A
