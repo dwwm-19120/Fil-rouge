@@ -1,4 +1,4 @@
-<body class="container" style="background:url('<?php echo base_url('assets/img/background_village.png');?>')"><!-- :) -->
+<body class="container root" style="background:url('<?php echo base_url('assets/img/background_village.png');?>')"><!-- :) -->
     <div class="wrap m-0 p-0">
         <header class="col-12 px-0">
             <div class="container p-0">
