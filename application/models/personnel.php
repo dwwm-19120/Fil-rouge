@@ -26,6 +26,15 @@ class Personnel extends CI_model
          }
     }
 /*
+---------------------------------------------requete de recuperation variable personnel--------------------------------------------------------------
+*/
+    public function accountAdm2($id)
+    {
+        $account=$this->db->where("pers_id",$id)->get('personnels'); 
+        
+        return $account->row();    
+    }
+/*
 ---------------------------------------------------- ajouter un personnel-----------------------------------
 */
 

@@ -44,6 +44,7 @@ class Administration extends CI_Controller
     {
         $this->session->set_userdata('admin', TRUE);
         $this->session->set_userdata('info',$autorisation->pers_identif);
+        $this->session->set_userdata('id',$autorisation->pers_id);
         redirect('administration/admin');
     }
   }
@@ -115,13 +116,14 @@ class Administration extends CI_Controller
   */
   public function maj_personnel()
   {
+    $id=$this->session->userdata('id');
+    $data['perso']=$this->personnel->accountAdm2($id);
     if($this->input->post())
     {
-      $this->session->
     }
     else
     {
-      $this->template_admin->displayad('modifcompteadmin');
+      $this->template_admin->displayad('modifcompteadmin',$data);
     }
   }
   /*
