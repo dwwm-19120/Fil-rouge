@@ -43,7 +43,8 @@ class Administration extends CI_Controller
     else
     {
         $this->session->set_userdata('admin', TRUE);
-        $this->session->set_userdata('info',$autorisation);
+        $this->session->set_userdata('info',$autorisation->pers_identif);
+        $this->session->set_userdata('id',$autorisation->pers_id);
         redirect('administration/admin');
     }
   }
@@ -62,23 +63,6 @@ class Administration extends CI_Controller
     $this->template->display('acceuil');
   }
   /*
-  -----------------------------------------------PARTI ADMIN -------------------------------------------
-  -avec tout les droits
-  -
-  
-  */
-  public function admin()
-  {
-    $this->template_admin->displayad('admin');
-  }
-/*
--------------------------------------------------------PAGE AJOUT---------------------------------------------
-*/
-  public function ajout()
-  {
-    $this->template_admin->displayad('ajout_produit');
-  }
-  /*
   ------------------------------------------------------------PAGE INSCRIPTION PERSONNEL-------------------------------
   */
   public function incsrip_personel()
@@ -86,7 +70,7 @@ class Administration extends CI_Controller
     if($this->input->post())
     {
         $result[]=$this->input->post();
-        $result2=$this->personnel->accountAdm($this->input->post("email"));
+        $result2=$this->personnel->accountAdm1($this->input->post("email"));
         
         $this->form_validation->set_error_delimiters('<div class=" mr-auto ml-auto">','</div>'); 
   
@@ -127,4 +111,36 @@ class Administration extends CI_Controller
         $this->template_admin->displayad('inscrip');
       }
   }
+  /*
+  ------------------------------------------------------------------MODIF PERSONNEL------------------------------------------------
+  */
+  public function maj_personnel()
+  {
+    $id=$this->session->userdata('id');
+    $data['perso']=$this->personnel->accountAdm2($id);
+    if($this->input->post())
+    {
+    }
+    else
+    {
+      $this->template_admin->displayad('modifcompteadmin',$data);
+    }
+  }
+  /*
+  -----------------------------------------------PARTI ADMIN -------------------------------------------------------------
+  -avec tout les droits
+  -
+  
+  */
+  public function admin()
+  {
+    $this->template_admin->displayad('admin');
+  }
+  /*
+  -------------------------------------------------------PAGE AJOUT---------------------------------------------
+  */
+    public function ajout()
+    {
+      $this->template_admin->displayad('ajout_produit');
+    }
 }
