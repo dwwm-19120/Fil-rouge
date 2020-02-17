@@ -49,9 +49,22 @@ return $id;
 /*
 ---------------------------------------------------------------------------------------------------------------------------
 */
-public function modif_mdp($id)
+public function modif_mdp($maj,$id)
 {
     $this->db->update('personnels',$data,'pers_id='.$id);
 }
-
+/*
+------------------------------------------------------------------------------MAJ PERSONNEL----------------------------------------------------
+*/
+public function modif_pers($maj,$id)
+{
+    $this->db->update('personnels',$maj,'pers_id='.$id);
+}
+/*
+-------------------------------------------------------------------------------SUPPRESSION ADMIN---------------------------------------------------
+*/
+public function supradmi($id)
+{
+    $this->db->delete('personnels','pers_id='.$id);
+}
 }

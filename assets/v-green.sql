@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `personnels` (
 --
 
 INSERT INTO `personnels` (`pers_id`, `pers_nom`, `pers_prenom`, `pers_mail`, `pers_tel`, `pers_identif`, `pers_mdp`) VALUES
-(1, 'FOVIAUX', 'Nicolas', 'nico.foviaux@hotmail.fr', NULL, 'Nikthekiller62', '$2y$10$kfUKR5PQEVYMzufd/jRGT.XKNWJ5thyNlV2DrhEaMWUpS6nmhzjaC'),
+(1, 'FOVIAUX', 'Nicolas', 'nico.foviaux@hotmail.fr', NULL, 'Nikthekiller', '$2y$10$kfUKR5PQEVYMzufd/jRGT.XKNWJ5thyNlV2DrhEaMWUpS6nmhzjaC'),
 (2, 'Legris', 'Augustin', 'augustinlegris@outlook.fr', NULL, 'Ashkoort', '$2y$10$y6wrEetjtBF7ZVSBrxixresZw9slo2r0Uu9Q8Yj7iMSg5ZGkHqTC6'),
 (3, 'pranloup', 'quentin', 'q.pranloup@laposte.net', NULL, 'urtaine', '$2y$10$LKQVYV3UtlMHtyVv8XEIW.aIpGNXW4Ck5VuBE26G0EJSRGY1aFeGa'),
 (4, 'Boukraa', 'Gauthier', 'gaboukraa@laposte.net', NULL, 'claptrap', '$2y$10$0C4bLXKGSYeb1rkeBPJs3OGrXVl1sysxvKJvF8I69DYJkPzRweTYm'),
