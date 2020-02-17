@@ -120,6 +120,7 @@ class Administration extends CI_Controller
     $data['perso']=$this->personnel->accountAdm2($id);
     if($this->input->post())
     {
+      
     }
     else
     {
