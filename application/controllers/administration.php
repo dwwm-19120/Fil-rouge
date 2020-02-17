@@ -36,10 +36,6 @@ class Administration extends CI_Controller
         $this->session->set_flashdata('errorMdp', 'Mot de passe incorrect');
         $this->template->display('idAdmin');
     }
-    /*elseif($autorisation->cli_id>10)
-    {
-        $this->template->display('connexion');
-    }*/
     else
     {
         $this->session->set_userdata('admin', TRUE);
@@ -58,7 +54,7 @@ class Administration extends CI_Controller
   */
   public function decopersonnel()
   {
-    $this->session-> unset_userdata('admin','info');
+    $this->session-> unset_userdata('admin','info','id');
     $this ->session->sess_destroy();
     $this->template->display('acceuil');
   }
@@ -120,11 +116,56 @@ class Administration extends CI_Controller
     $data['perso']=$this->personnel->accountAdm2($id);
     if($this->input->post())
     {
-      
+      $result=$this->input->post();
+      $maj=array(
+        'pers_nom'=> $result['nom'],
+        'pers_prenom'=>$result['prenom'],
+        'pers_tel'=>$result['tel']
+    );
+    $this->personnel->modif_pers($maj,$id);
+    redirect('administration/idpersonnel');
     }
     else
     {
       $this->template_admin->displayad('modifcompteadmin',$data);
+    }
+  }
+  /*
+  --------------------------------------------------------------------MODIF MDP-----------------------------------------------------------
+   */
+  public function maj_MDP()
+  {
+    $id=$this->session->userdata('id');
+    $data['perso']=$this->personnel->accountAdm2($id);
+
+    $this->form_validation->set_error_delimiters('<div class=" mr-auto ml-auto">','</div>');
+
+    $this->form_validation->set_rules( 'MDP','MDP','required|regex_match[/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}/]', array('required'=>'veuillez saisir votre mot de passe', 'regex_match'=> 'le mot de passe doit comporté au mon une majauscule,un caractere speciale et doit etre composé de 8 caracteres minimale')); 
+    $this->form_validation->set_rules( 'MDPconf','MDPconf','required|matches[MDP]', array('required'=>'veuillez confirmer votre mot de passe', 'matches'=> 'mot de passe incorrect')); 
+    if($this->form_validation->run()==true)
+    {
+      $result=password_hash($this->input->post("MDP"),PASSWORD_DEFAULT);
+      $maj=array(
+        'pers_mdp'=> $result
+    );
+      $this->personnel->modif_mdp($maj,$id);
+      redirect('administration/idpersonnel');
+    }
+    else
+    {
+      $this->template_admin->displayad('modifcompteadmin',$data);
+    }
+  }
+  /*
+  --------------------------------------------------------------------SUPRESSION ADMI-----------------------------------------------------------------
+  */
+  public function suppradmi()
+  {
+    $id=$this->session->userdata('id');
+    if($this->input->post())
+    {
+      $this->personnel->supradmi($id);
+      redirect('structure/acceuil');
     }
   }
   /*

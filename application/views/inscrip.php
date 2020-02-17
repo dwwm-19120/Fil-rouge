@@ -63,7 +63,6 @@
                     </br>
                     <div class="row form-group justify-content-around ">
                  <button type="submit" class="btn btn-success btn-lg " name="FICheck" ><i class="fas fa-check"></i> Valider</button>
-                    <button type="cancel" class="btn btn-danger btn-lg " name="FICancel" ><i class="fas fa-times"></i> Annuler</button>
                     </div>
                 </fieldset>
             <?php echo form_close();?>
