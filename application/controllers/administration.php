@@ -3,64 +3,81 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Administration extends CI_Controller
 {
-  /*
-  -------------------------------------------CONNEXION ADMIN-------------------------------------------------------------------------------------------------------------
-  -verification des informations avec des regles
-  -si regle nn ok retour sur page login
-  -si identifiant incorrecte retour sur la page login avec erreur
-  -si mdp incorrecte retour sur page login avec erreur
-  -/!\ faire une session differente admin ou commercial /!\
-  -si tt est ok creation session admin et redirection sur la page admin
-  */
+
+  /**
+* \brief connexion admin
+* \param  verification des informations avec des regles
+* \param  si regle nn ok retour sur page login
+* \param  si identifiant incorrecte retour sur la page login avec erreur
+* \param  si mdp incorrecte retour sur page login avec erreur
+* \param  /!\ faire une session differente admin ou commercial /!\ a faire
+* \return  creation session admin et redirection sur la page admin
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
+*/
   public function idpersonnel()
   {
     if($this->session->userdata('admin')!=true)
     {
 
-    $result[]=$this->input->post();
-    $this->form_validation->set_error_delimiters('<div class=" mr-auto ml-auto">','</div>');
-    $this->form_validation->set_rules('identifiant','identifiant','required',array('required'=>'veuillez saisir votre identifiant'));
-    $this->form_validation->set_rules('mot_de_passe','mot_de_passe','required',array('required'=>'veuillez saisir votre mot de passe'));
-    $autorisation=$this->personnel->accountAdm($this->input->post("identifiant"));
-    if($this->form_validation->run()==false)
-    {
-        $this->template->display('idAdmin');
-    }
-    elseif($autorisation==false)
-    {
-        $this->session->set_flashdata('errorId','Identifiant incorrect');
-        $this->template->display('idAdmin');
-    }
-    elseif(!password_verify($this->input->post('mot_de_passe'),$autorisation->pers_mdp))
-    {
-        $this->session->set_flashdata('errorMdp', 'Mot de passe incorrect');
-        $this->template->display('idAdmin');
+      $result[]=$this->input->post();
+      $this->form_validation->set_error_delimiters('<div class=" mr-auto ml-auto">','</div>');
+      $this->form_validation->set_rules('identifiant','identifiant','required',array('required'=>'veuillez saisir votre identifiant'));
+      $this->form_validation->set_rules('mot_de_passe','mot_de_passe','required',array('required'=>'veuillez saisir votre mot de passe'));
+      $autorisation=$this->personnel->accountAdm($this->input->post("identifiant"));
+        if($this->form_validation->run()==false)
+        {
+            $this->template->display('idAdmin');
+        }
+        elseif($autorisation==false)
+        {
+            $this->session->set_flashdata('errorId','Identifiant incorrect');
+            $this->template->display('idAdmin');
+        }
+        elseif(!password_verify($this->input->post('mot_de_passe'),$autorisation->pers_mdp))
+        {
+            $this->session->set_flashdata('errorMdp', 'Mot de passe incorrect');
+            $this->template->display('idAdmin');
+        }
+        else
+        {
+            $this->session->set_userdata('admin', TRUE);
+            $this->session->set_userdata('info',$autorisation->pers_identif);
+            $this->session->set_userdata('id',$autorisation->pers_id);
+            redirect('administration/admin');
+        }
     }
     else
     {
-        $this->session->set_userdata('admin', TRUE);
-        $this->session->set_userdata('info',$autorisation->pers_identif);
-        $this->session->set_userdata('id',$autorisation->pers_id);
-        redirect('administration/admin');
+      redirect('administration/admin');
     }
   }
-  else
-  {
-    redirect('administration/admin');
-  }
-  }
-  /*
-  ------------------------------------------------------------DECONNEXION ADMIN ----------------------------------------------------------
-  */
+  /**
+* \brief deconnexion admin
+* \param  suprime les sessions admin, info et id
+* \param  detruit la session
+* \return  redirection acceuil
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
+*/
   public function decopersonnel()
   {
     $this->session-> unset_userdata('admin','info','id');
     $this ->session->sess_destroy();
     $this->template->display('acceuil');
   }
-  /*
-  ------------------------------------------------------------PAGE INSCRIPTION PERSONNEL-------------------------------
-  */
+  /**
+* \brief ajout d'admin
+* \param  verification si le mail existe dans la Base de Donnee
+* \param  verification des informations avec des regles
+* \param  si regle nn ok retour sur page ajout de personnel
+* \param  sinon hachage du mot de passe 
+* \param  changer les nom de champ dans un tableau
+* \param  envoi des variable en base
+* \return  redirection vers la page admin
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
+*/
   public function incsrip_personel()
   {
     if($this->input->post())
@@ -107,9 +124,17 @@ class Administration extends CI_Controller
         $this->template_admin->displayad('inscrip');
       }
   }
-  /*
-  ------------------------------------------------------------------MODIF PERSONNEL------------------------------------------------
-  */
+  /**
+* \brief modification d'admin
+* \param  connexion au compte dans la Base de Donnee grace a l'id stocké dans la session
+* \param  recuperatios des informations et les mettre dans la view pour affichage
+* \param  si bouton post est enclancher recuperation de variables
+* \param  changement des nom de champs dans le tableau pour l'envoi a la base
+* \param  envoi des variable a la base
+* \return  redirection vers la page admin
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
+*/
   public function maj_personnel()
   {
     $id=$this->session->userdata('id');
@@ -130,9 +155,18 @@ class Administration extends CI_Controller
       $this->template_admin->displayad('modifcompteadmin',$data);
     }
   }
-  /*
-  --------------------------------------------------------------------MODIF MDP-----------------------------------------------------------
-   */
+  /**
+* \brief modification mot de passe
+* \param  connexion au compte dans la Base de Donnee grace a l'id stocké dans la session
+* \param  recuperations des informations et les mettre dans la view pour affichage (si erreur)
+* \param  pose de regles mour le mot de passe
+* \param  si les regles sont ok hachage du mot de passe 
+* \param  changer les nom de champ dans un tableau
+* \param  envoi des variable en base
+* \return  redirection vers la page admin
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
+*/
   public function maj_MDP()
   {
     $id=$this->session->userdata('id');
