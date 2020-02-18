@@ -1,9 +1,13 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 class Personnel extends CI_model
 {
-    /*
-    -----------------------------------------------requete de recuperation info personnel--------------------------------------------
-    */
+  /**
+* \brief requete de recuperation de donnée avec l'id
+* \param  id recuperation de donnée avec l'id
+* \return  tableau de variable => si resultat trouvé faux => is aucun resultat
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
+*/
     public function accountAdm($id)
     {
         $account=$this->db->where("pers_identif",$id)->get('personnels'); 
@@ -13,8 +17,12 @@ class Personnel extends CI_model
           return $account->row();
          }
     }
-/*
-----------------------------------------------requete de verif pour inscription----------------------------------------------------------------
+  /**
+* \brief requete de recuperation de donnée avec l'email
+* \param  mail recuperation de donnée avec l'email
+* \return tableau de variable => si resultat trouvé faux => is aucun resultat
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
 */
     public function accountAdm1($mail)
     {
@@ -25,8 +33,12 @@ class Personnel extends CI_model
           return $account->row();
          }
     }
-/*
----------------------------------------------requete de recuperation variable personnel--------------------------------------------------------------
+  /**
+* \brief requete de recuperation de donnée avec l'id
+* \param  id recuperation de donnée avec l'id
+* \return les information dans un tableau
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
 */
     public function accountAdm2($id)
     {
@@ -34,34 +46,44 @@ class Personnel extends CI_model
         
         return $account->row();    
     }
-/*
----------------------------------------------------- ajouter un personnel-----------------------------------
+  /**
+* \brief requete d'ajout d'un administrateur
+* \param  aj tableau de variables
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
 */
-
     public function ajout($aj)
 {
 $this->db->insert('personnels',$aj);
-$id = $this->db->insert_id();
-
-return $id;
 }
 
-/*
----------------------------------------------------------------------------------------------------------------------------
+  /**
+* \brief modification du mot de passe compte admin 
+* \param  maj tableau de variables
+* \param  id recuperation de l'id du compte
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
 */
 public function modif_mdp($maj,$id)
 {
     $this->db->update('personnels',$data,'pers_id='.$id);
 }
-/*
-------------------------------------------------------------------------------MAJ PERSONNEL----------------------------------------------------
+  /**
+* \brief modification des infos compte admin 
+* \param  maj tableau de variables
+* \param  id recuperation de l'id du compte
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
 */
 public function modif_pers($maj,$id)
 {
     $this->db->update('personnels',$maj,'pers_id='.$id);
 }
-/*
--------------------------------------------------------------------------------SUPPRESSION ADMIN---------------------------------------------------
+  /**
+* \brief supression du compte admin 
+* \param  id recuperation de l'id du compte
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
 */
 public function supradmi($id)
 {

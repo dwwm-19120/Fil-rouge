@@ -6,11 +6,11 @@ class Administration extends CI_Controller
 
   /**
 * \brief connexion admin
-* \param  verification des informations avec des regles
-* \param  si regle nn ok retour sur page login
-* \param  si identifiant incorrecte retour sur la page login avec erreur
-* \param  si mdp incorrecte retour sur page login avec erreur
-* \param  /!\ faire une session differente admin ou commercial /!\ a faire
+* \brief  verification des informations avec des regles
+* \brief  si regle nn ok retour sur page login
+* \brief  si identifiant incorrecte retour sur la page login avec erreur
+* \brief  si mdp incorrecte retour sur page login avec erreur
+* \todo /!\ faire une session differente admin ou commercial /!\ 
 * \return  creation session admin et redirection sur la page admin
 * \author FOVIAUX Nicolas
 * \date 17/02/2020
@@ -54,8 +54,8 @@ class Administration extends CI_Controller
   }
   /**
 * \brief deconnexion admin
-* \param  suprime les sessions admin, info et id
-* \param  detruit la session
+* \brief  suprime les sessions admin, info et id
+* \brief  detruit la session
 * \return  redirection acceuil
 * \author FOVIAUX Nicolas
 * \date 17/02/2020
@@ -68,12 +68,12 @@ class Administration extends CI_Controller
   }
   /**
 * \brief ajout d'admin
-* \param  verification si le mail existe dans la Base de Donnee
-* \param  verification des informations avec des regles
-* \param  si regle nn ok retour sur page ajout de personnel
-* \param  sinon hachage du mot de passe 
-* \param  changer les nom de champ dans un tableau
-* \param  envoi des variable en base
+* \brief  verification si le mail existe dans la Base de Donnee
+* \brief  verification des informations avec des regles
+* \brief  si regle nn ok retour sur page ajout de personnel
+* \brief  sinon hachage du mot de passe 
+* \brief  changer les nom de champ dans un tableau
+* \brief  envoi des variable en base
 * \return  redirection vers la page admin
 * \author FOVIAUX Nicolas
 * \date 17/02/2020
@@ -126,11 +126,11 @@ class Administration extends CI_Controller
   }
   /**
 * \brief modification d'admin
-* \param  connexion au compte dans la Base de Donnee grace a l'id stocké dans la session
-* \param  recuperatios des informations et les mettre dans la view pour affichage
-* \param  si bouton post est enclancher recuperation de variables
-* \param  changement des nom de champs dans le tableau pour l'envoi a la base
-* \param  envoi des variable a la base
+* \brief  connexion au compte dans la Base de Donnee grace a l'id stocké dans la session
+* \brief  recuperatios des informations et les mettre dans la view pour affichage
+* \brief  si bouton post est enclancher recuperation de variables
+* \brief  changement des nom de champs dans le tableau pour l'envoi a la base
+* \brief  envoi des variable a la base
 * \return  redirection vers la page admin
 * \author FOVIAUX Nicolas
 * \date 17/02/2020
@@ -157,12 +157,12 @@ class Administration extends CI_Controller
   }
   /**
 * \brief modification mot de passe
-* \param  connexion au compte dans la Base de Donnee grace a l'id stocké dans la session
-* \param  recuperations des informations et les mettre dans la view pour affichage (si erreur)
-* \param  pose de regles mour le mot de passe
-* \param  si les regles sont ok hachage du mot de passe 
-* \param  changer les nom de champ dans un tableau
-* \param  envoi des variable en base
+* \brief  connexion au compte dans la Base de Donnee grace a l'id stocké dans la session
+* \brief  recuperations des informations et les mettre dans la view pour affichage (si erreur)
+* \brief  pose de regles mour le mot de passe
+* \brief  si les regles sont ok hachage du mot de passe 
+* \brief  changer les nom de champ dans un tableau
+* \brief  envoi des variable en base
 * \return  redirection vers la page admin
 * \author FOVIAUX Nicolas
 * \date 17/02/2020
@@ -190,9 +190,14 @@ class Administration extends CI_Controller
       $this->template_admin->displayad('modifcompteadmin',$data);
     }
   }
-  /*
-  --------------------------------------------------------------------SUPRESSION ADMI-----------------------------------------------------------------
-  */
+  /**
+* \brief suppression admin
+* \brief  connexion au compte dans la Base de Donnee grace a l'id stocké dans la session
+* \brief  si bouton validé envoie de la requete de supression
+* \return  redirection vers la page acceuil
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
+*/
   public function suppradmi()
   {
     $id=$this->session->userdata('id');
@@ -202,19 +207,28 @@ class Administration extends CI_Controller
       redirect('structure/acceuil');
     }
   }
-  /*
-  -----------------------------------------------PARTI ADMIN -------------------------------------------------------------
-  -avec tout les droits
-  -
-  
-  */
+  /**
+* \brief Page d'acceuil administrateur
+* \return  affichage de la page admin
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
+*/
   public function admin()
   {
     $this->template_admin->displayad('admin');
   }
-  /*
-  -------------------------------------------------------PAGE AJOUT---------------------------------------------
-  */
+  /**
+* \brief page d'ajout de produit
+* \brief  *
+* \brief  *
+* \brief  *
+* \brief  *
+* \brief  *
+* \brief  *
+* \return  *
+* \author FOVIAUX Nicolas
+* \date 18/02/2020
+*/
     public function ajout()
     {
       $this->template_admin->displayad('ajout_produit');
