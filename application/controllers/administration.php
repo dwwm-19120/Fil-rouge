@@ -229,8 +229,9 @@ class Administration extends CI_Controller
 * \author FOVIAUX Nicolas
 * \date 18/02/2020
 */
-    public function ajout()
+    public function produits()
     {
-      $this->template_admin->displayad('ajout_produit');
+      $data[]= $this->produit->list();
+      $this->template_admin->displayad('liste_Produits');
     }
 }
