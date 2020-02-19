@@ -1,11 +1,11 @@
-<?php echo form_open("administration/ajCat",'class="form_control"');?>
+<?php echo form_open("administration/majcat/".$categorie->cat_id,'class="form_control"');?>
                 <fieldset class=" container p-4 ">
-                    <legend class="text-center col-xl-2 col-sm-4 ml-auto mr-auto ">ajouter une categorie</legend>
+                    <legend class="text-center col-xl-2 col-sm-4 ml-auto mr-auto ">modifier une categorie</legend>
                         <div class='row form-group mr-auto ml-auto'>
                             <div class="container col-xl-6 col-sm-12">
                             <div class="row" >
                                 <label for="nom" ></label>
-                                <input type="text" name="cat" class="form-control col-8 mr-auto ml-auto text-center fontAwesome" placeholder="nouvelle categorie" >
+                                <input type="text" name="cat" class="form-control col-8 mr-auto ml-auto text-center fontAwesome" value="<?=$categorie->cat_nom?>" >
                                 <?php  echo  form_error("cat");?>
                             </div>
                             </div>

@@ -228,37 +228,89 @@ class Administration extends CI_Controller
       $data["categories"]=$this->categories->list();
       $this->template_admin->displayad('categories' , $data);
    } 
+   /**
+ * \brief page d'ajout categorie
+ * \return  page formulaire d'ajout categorie
+ * \author FOVIAUX Nicolas
+ * \date 18/02/2020
+ */
+ public function ajcat()
+ {
+   if($this->input->post())
+   {
+     $this->form_validation->set_error_delimiters('<div class=" mr-auto ml-auto">','</div>'); 
+ 
+       $this->form_validation->set_rules( 'cat','cat' ,'required|regex_match[/^[a-züéâäàåçêëéèïîìôöòûùÿáíóú\' ñA-ZÄÅÉÖÇÜÑÀÂÉÈÔÙÛÇ|-]+$/]', array('required'=>'veuillez saisir votre nouvelle categorie','regex_match'=> 'vous utilisez des caractéres speciaux' )); 
+       
+       if($this->form_validation->run()==false)
+       {
+         $this->template_admin->displayad('catAj');
+       }
+       else
+       {
+         $result=$this->input->post();
+         $data=array('cat_nom'=> $result['cat']);
+         $this->categories->catAj($data);
+         redirect('administration/categorie');
+       }
+       
+   }
+   else
+   {
+     $this->template_admin->displayad('catAj');
+   }
+ } 
+ /**
+* \brief page de MAJ d'une categorie
+* \param id id de la categorie
+* \return  page formulaire d'ajout categorie
+* \author FOVIAUX Nicolas
+* \date 18/02/2020
+*/
+public function majcat($id)
+{
+  $data['categorie']=$this->categories->catTable($id);
+
+  if($this->input->post())
+  {
+    $this->form_validation->set_error_delimiters('<div class=" mr-auto ml-auto">','</div>'); 
+
+      $this->form_validation->set_rules( 'cat','cat' ,'required|regex_match[/^[a-züéâäàåçêëéèïîìôöòûùÿáíóú\' ñA-ZÄÅÉÖÇÜÑÀÂÉÈÔÙÛÇ|-]+$/]', array('required'=>'veuillez saisir votre modification','regex_match'=> 'vous utilisez des caractéres speciaux' )); 
+      
+      if($this->form_validation->run()==false)
+      {
+        $this->template_admin->displayad('catMaj',$data);
+      }
+      else
+      {
+        $result=$this->input->post();
+        $data=array('cat_nom'=> $result['cat']);
+        $this->categories->catMaj($id,$data);
+        var_dump($id);
+        redirect('administration/categorie');
+      }
+      
+  }
+  else
+  {
+    $this->template_admin->displayad('catMaj',$data);
+  }
+} 
+/**
+* \brief page de suppression d'une categorie
+* \param id id de la categorie
+* \return  page formulaire d'ajout categorie
+* \author FOVIAUX Nicolas
+* \date 18/02/2020
+*/
+public function supcat($id)
+{
+  $this->categories->delCat($id);
+  redirect('administration/categorie');
+} 
 
   //------------------------PAS FINI---------------------------------------------------------------------------------------------------------------------------------------------------
-    /**
-  * \brief page d'ajout categorie
-  * \return  page formulaire d'ajout categorie
-  * \author FOVIAUX Nicolas
-  * \date 18/02/2020
-  */
-  public function ajcat()
-  {
-    if($this->input->post())
-    {
-      $this->form_validation->set_error_delimiters('<div class=" mr-auto ml-auto">','</div>'); 
   
-        $this->form_validation->set_rules( 'cat','cat' ,'required|regex_match[/^[a-züéâäàåçêëéèïîìôöòûùÿáíóú\' ñA-ZÄÅÉÖÇÜÑÀÂÉÈÔÙÛÇ|-]+$/]', array('required'=>'veuillez saisir votre nouvelle categorie','regex_match'=> 'vous utilisez des caractéres speciaux' )); 
-        
-        if($this->form_validation->run()==false)
-        {
-          $this->template_admin->displayad('catAj');
-        }
-        else
-        {
-
-        }
-        
-    }
-    else
-    {
-      $this->template_admin->displayad('catAj');
-    }
-  } 
 
   /**
   * \brief page d'ajout de produit

@@ -11,6 +11,10 @@ if(empty($categories))
 else
 {
     ?>
+    <h1>categorie</h1>
+    <p>pour ajouter une nouvelle categorie</p>
+   <a href="<?= site_url('administration/ajcat');?>"><button><i class="fas fa-pencil-alt"></i></button></a>
+   <hr>
 <table>
 <thead>
 <tr>
@@ -25,7 +29,7 @@ else
         {
             ?>
                 <tr>
-                    <td><a href="<?= site_url('administration/ajcat');?>"><button><i class="fas fa-pencil-alt"></i></button></a><a href=""><button><i class="fas fa-trash-alt"></i></button></a></td>
+                    <td><a href="<?= site_url('administration/majCat/'.$cat->cat_id);?>"><button><i class="fas fa-pencil-alt"></i></button></a><a href="<?= site_url('administration/supcat/'.$cat->cat_id);?>"><button><i class="fas fa-trash-alt"></i></button></a></td>
                     <td><?=$cat->cat_id?></td>
                     <td><?=$cat->cat_nom?></td>
                 </tr>
