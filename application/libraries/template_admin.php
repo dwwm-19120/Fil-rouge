@@ -50,5 +50,5 @@ class Template_admin
 				
 		// return $this;
 		
-	} // -- display()	
+	} // -- displayad()	
 } // -- classe

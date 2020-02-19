@@ -3,64 +3,81 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Administration extends CI_Controller
 {
-  /*
-  -------------------------------------------CONNEXION ADMIN-------------------------------------------------------------------------------------------------------------
-  -verification des informations avec des regles
-  -si regle nn ok retour sur page login
-  -si identifiant incorrecte retour sur la page login avec erreur
-  -si mdp incorrecte retour sur page login avec erreur
-  -/!\ faire une session differente admin ou commercial /!\
-  -si tt est ok creation session admin et redirection sur la page admin
-  */
+
+  /**
+* \brief connexion admin
+* \brief  verification des informations avec des regles
+* \brief  si regle nn ok retour sur page login
+* \brief  si identifiant incorrecte retour sur la page login avec erreur
+* \brief  si mdp incorrecte retour sur page login avec erreur
+* \todo /!\ faire une session differente admin ou commercial /!\ 
+* \return  creation session admin et redirection sur la page admin
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
+*/
   public function idpersonnel()
   {
     if($this->session->userdata('admin')!=true)
     {
 
-    $result[]=$this->input->post();
-    $this->form_validation->set_error_delimiters('<div class=" mr-auto ml-auto">','</div>');
-    $this->form_validation->set_rules('identifiant','identifiant','required',array('required'=>'veuillez saisir votre identifiant'));
-    $this->form_validation->set_rules('mot_de_passe','mot_de_passe','required',array('required'=>'veuillez saisir votre mot de passe'));
-    $autorisation=$this->personnel->accountAdm($this->input->post("identifiant"));
-    if($this->form_validation->run()==false)
-    {
-        $this->template->display('idAdmin');
-    }
-    elseif($autorisation==false)
-    {
-        $this->session->set_flashdata('errorId','Identifiant incorrect');
-        $this->template->display('idAdmin');
-    }
-    elseif(!password_verify($this->input->post('mot_de_passe'),$autorisation->pers_mdp))
-    {
-        $this->session->set_flashdata('errorMdp', 'Mot de passe incorrect');
-        $this->template->display('idAdmin');
+      $result[]=$this->input->post();
+      $this->form_validation->set_error_delimiters('<div class=" mr-auto ml-auto">','</div>');
+      $this->form_validation->set_rules('identifiant','identifiant','required',array('required'=>'veuillez saisir votre identifiant'));
+      $this->form_validation->set_rules('mot_de_passe','mot_de_passe','required',array('required'=>'veuillez saisir votre mot de passe'));
+      $autorisation=$this->personnel->accountAdm($this->input->post("identifiant"));
+        if($this->form_validation->run()==false)
+        {
+            $this->template->display('idAdmin');
+        }
+        elseif($autorisation==false)
+        {
+            $this->session->set_flashdata('errorId','Identifiant incorrect');
+            $this->template->display('idAdmin');
+        }
+        elseif(!password_verify($this->input->post('mot_de_passe'),$autorisation->pers_mdp))
+        {
+            $this->session->set_flashdata('errorMdp', 'Mot de passe incorrect');
+            $this->template->display('idAdmin');
+        }
+        else
+        {
+            $this->session->set_userdata('admin', TRUE);
+            $this->session->set_userdata('info',$autorisation->pers_identif);
+            $this->session->set_userdata('id',$autorisation->pers_id);
+            redirect('administration/admin');
+        }
     }
     else
     {
-        $this->session->set_userdata('admin', TRUE);
-        $this->session->set_userdata('info',$autorisation->pers_identif);
-        $this->session->set_userdata('id',$autorisation->pers_id);
-        redirect('administration/admin');
+      redirect('administration/admin');
     }
   }
-  else
-  {
-    redirect('administration/admin');
-  }
-  }
-  /*
-  ------------------------------------------------------------DECONNEXION ADMIN ----------------------------------------------------------
-  */
+  /**
+* \brief deconnexion admin
+* \brief  suprime les sessions admin, info et id
+* \brief  detruit la session
+* \return  redirection acceuil
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
+*/
   public function decopersonnel()
   {
     $this->session-> unset_userdata('admin','info','id');
     $this ->session->sess_destroy();
     $this->template->display('acceuil');
   }
-  /*
-  ------------------------------------------------------------PAGE INSCRIPTION PERSONNEL-------------------------------
-  */
+  /**
+* \brief ajout d'admin
+* \brief  verification si le mail existe dans la Base de Donnee
+* \brief  verification des informations avec des regles
+* \brief  si regle nn ok retour sur page ajout de personnel
+* \brief  sinon hachage du mot de passe 
+* \brief  changer les nom de champ dans un tableau
+* \brief  envoi des variable en base
+* \return  redirection vers la page admin
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
+*/
   public function incsrip_personel()
   {
     if($this->input->post())
@@ -107,9 +124,17 @@ class Administration extends CI_Controller
         $this->template_admin->displayad('inscrip');
       }
   }
-  /*
-  ------------------------------------------------------------------MODIF PERSONNEL------------------------------------------------
-  */
+  /**
+* \brief modification d'admin
+* \brief  connexion au compte dans la Base de Donnee grace a l'id stocké dans la session
+* \brief  recuperatios des informations et les mettre dans la view pour affichage
+* \brief  si bouton post est enclancher recuperation de variables
+* \brief  changement des nom de champs dans le tableau pour l'envoi a la base
+* \brief  envoi des variable a la base
+* \return  redirection vers la page admin
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
+*/
   public function maj_personnel()
   {
     $id=$this->session->userdata('id');
@@ -130,9 +155,18 @@ class Administration extends CI_Controller
       $this->template_admin->displayad('modifcompteadmin',$data);
     }
   }
-  /*
-  --------------------------------------------------------------------MODIF MDP-----------------------------------------------------------
-   */
+  /**
+* \brief modification mot de passe
+* \brief  connexion au compte dans la Base de Donnee grace a l'id stocké dans la session
+* \brief  recuperations des informations et les mettre dans la view pour affichage (si erreur)
+* \brief  pose de regles mour le mot de passe
+* \brief  si les regles sont ok hachage du mot de passe 
+* \brief  changer les nom de champ dans un tableau
+* \brief  envoi des variable en base
+* \return  redirection vers la page admin
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
+*/
   public function maj_MDP()
   {
     $id=$this->session->userdata('id');
@@ -156,9 +190,14 @@ class Administration extends CI_Controller
       $this->template_admin->displayad('modifcompteadmin',$data);
     }
   }
-  /*
-  --------------------------------------------------------------------SUPRESSION ADMI-----------------------------------------------------------------
-  */
+  /**
+* \brief suppression admin
+* \brief  connexion au compte dans la Base de Donnee grace a l'id stocké dans la session
+* \brief  si bouton validé envoie de la requete de supression
+* \return  redirection vers la page acceuil
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
+*/
   public function suppradmi()
   {
     $id=$this->session->userdata('id');
@@ -168,21 +207,126 @@ class Administration extends CI_Controller
       redirect('structure/acceuil');
     }
   }
-  /*
-  -----------------------------------------------PARTI ADMIN -------------------------------------------------------------
-  -avec tout les droits
-  -
-  
-  */
+  /**
+* \brief Page d'acceuil administrateur
+* \return  affichage de la page admin
+* \author FOVIAUX Nicolas
+* \date 17/02/2020
+*/
   public function admin()
   {
     $this->template_admin->displayad('admin');
   }
-  /*
-  -------------------------------------------------------PAGE AJOUT---------------------------------------------
+  /**
+  * \brief page de vue des categories
+  * \return  page categorie avec tableaux de variable
+  * \author FOVIAUX Nicolas
+  * \date 18/02/2020
   */
-    public function ajout()
+   public function categorie()
+   {
+      $data["categories"]=$this->categories->list();
+      $this->template_admin->displayad('categories' , $data);
+   } 
+   /**
+ * \brief page d'ajout categorie
+ * \return  page formulaire d'ajout categorie
+ * \author FOVIAUX Nicolas
+ * \date 18/02/2020
+ */
+ public function ajcat()
+ {
+   if($this->input->post())
+   {
+     $this->form_validation->set_error_delimiters('<div class=" mr-auto ml-auto">','</div>'); 
+ 
+       $this->form_validation->set_rules( 'cat','cat' ,'required|regex_match[/^[a-züéâäàåçêëéèïîìôöòûùÿáíóú\' ñA-ZÄÅÉÖÇÜÑÀÂÉÈÔÙÛÇ|-]+$/]', array('required'=>'veuillez saisir votre nouvelle categorie','regex_match'=> 'vous utilisez des caractéres speciaux' )); 
+       
+       if($this->form_validation->run()==false)
+       {
+         $this->template_admin->displayad('catAj');
+       }
+       else
+       {
+         $result=$this->input->post();
+         $data=array('cat_nom'=> $result['cat']);
+         $this->categories->catAj($data);
+         redirect('administration/categorie');
+       }
+       
+   }
+   else
+   {
+     $this->template_admin->displayad('catAj');
+   }
+ } 
+ /**
+* \brief page de MAJ d'une categorie
+* \param id id de la categorie
+* \return  page formulaire d'ajout categorie
+* \author FOVIAUX Nicolas
+* \date 18/02/2020
+*/
+public function majcat($id)
+{
+  $data['categorie']=$this->categories->catTable($id);
+
+  if($this->input->post())
+  {
+    $this->form_validation->set_error_delimiters('<div class=" mr-auto ml-auto">','</div>'); 
+
+      $this->form_validation->set_rules( 'cat','cat' ,'required|regex_match[/^[a-züéâäàåçêëéèïîìôöòûùÿáíóú\' ñA-ZÄÅÉÖÇÜÑÀÂÉÈÔÙÛÇ|-]+$/]', array('required'=>'veuillez saisir votre modification','regex_match'=> 'vous utilisez des caractéres speciaux' )); 
+      
+      if($this->form_validation->run()==false)
+      {
+        $this->template_admin->displayad('catMaj',$data);
+      }
+      else
+      {
+        $result=$this->input->post();
+        $data=array('cat_nom'=> $result['cat']);
+        $this->categories->catMaj($id,$data);
+        var_dump($id);
+        redirect('administration/categorie');
+      }
+      
+  }
+  else
+  {
+    $this->template_admin->displayad('catMaj',$data);
+  }
+} 
+/**
+* \brief page de suppression d'une categorie
+* \param id id de la categorie
+* \return  page formulaire d'ajout categorie
+* \author FOVIAUX Nicolas
+* \date 18/02/2020
+*/
+public function supcat($id)
+{
+  $this->categories->delCat($id);
+  redirect('administration/categorie');
+} 
+
+  //------------------------PAS FINI---------------------------------------------------------------------------------------------------------------------------------------------------
+  
+
+  /**
+  * \brief page d'ajout de produit
+  * \brief  *
+  * \brief  *
+  * \brief  *
+  * \brief  *
+  * \brief  *
+  * \brief  *
+  * \return  *
+  * \author FOVIAUX Nicolas
+  * \date 18/02/2020
+  */
+    public function produits()
     {
-      $this->template_admin->displayad('ajout_produit');
+      $data["list"]= $this->produit->list();
+      $this->template_admin->displayad('liste_Produits');
     }
 }
