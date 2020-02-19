@@ -30,7 +30,7 @@ if (isset($_SESSION["admin"]) && ($_SESSION["admin"]) == true)
         <li><a href="">espace fournisseur</a></li>
         <li><a href="">espace relation clients</a></li>
         <li><a href="<?= site_url('administration/incsrip_personel');?>">ajout de personnel</a></li>
-        <li><a href="">categories</a></li>
+        <li><a href="<?= site_url('administration/categorie');?>">categories</a></li>
         <li><a href="">commandes</a></li>
         <li><a href="">ligne de commande</a></li>
     </ul>

@@ -218,20 +218,63 @@ class Administration extends CI_Controller
     $this->template_admin->displayad('admin');
   }
   /**
-* \brief page d'ajout de produit
-* \brief  *
-* \brief  *
-* \brief  *
-* \brief  *
-* \brief  *
-* \brief  *
-* \return  *
-* \author FOVIAUX Nicolas
-* \date 18/02/2020
-*/
+  * \brief page de vue des categories
+  * \return  page categorie avec tableaux de variable
+  * \author FOVIAUX Nicolas
+  * \date 18/02/2020
+  */
+   public function categorie()
+   {
+      $data["categories"]=$this->categories->list();
+      $this->template_admin->displayad('categories' , $data);
+   } 
+
+  //------------------------PAS FINI---------------------------------------------------------------------------------------------------------------------------------------------------
+    /**
+  * \brief page d'ajout categorie
+  * \return  page formulaire d'ajout categorie
+  * \author FOVIAUX Nicolas
+  * \date 18/02/2020
+  */
+  public function ajcat()
+  {
+    if($this->input->post())
+    {
+      $this->form_validation->set_error_delimiters('<div class=" mr-auto ml-auto">','</div>'); 
+  
+        $this->form_validation->set_rules( 'cat','cat' ,'required|regex_match[/^[a-züéâäàåçêëéèïîìôöòûùÿáíóú\' ñA-ZÄÅÉÖÇÜÑÀÂÉÈÔÙÛÇ|-]+$/]', array('required'=>'veuillez saisir votre nouvelle categorie','regex_match'=> 'vous utilisez des caractéres speciaux' )); 
+        
+        if($this->form_validation->run()==false)
+        {
+          $this->template_admin->displayad('catAj');
+        }
+        else
+        {
+
+        }
+        
+    }
+    else
+    {
+      $this->template_admin->displayad('catAj');
+    }
+  } 
+
+  /**
+  * \brief page d'ajout de produit
+  * \brief  *
+  * \brief  *
+  * \brief  *
+  * \brief  *
+  * \brief  *
+  * \brief  *
+  * \return  *
+  * \author FOVIAUX Nicolas
+  * \date 18/02/2020
+  */
     public function produits()
     {
-      $data[]= $this->produit->list();
+      $data["list"]= $this->produit->list();
       $this->template_admin->displayad('liste_Produits');
     }
 }
