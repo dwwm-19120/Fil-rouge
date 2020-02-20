@@ -170,10 +170,16 @@ body {
 	[title="top guitare" ],[title="top saxo"],[title="top piano"] {
 		width: 100%;
 	}
-
+	[alt="chronopost"] {
+		width: 100px;
+	}
+	 
 /*	liens	*/
+/*	Footer 	*/
 
-
+[class="list-unstyled"] p{
+	color:var(--new-b-primary);
+}
 /**************************************** Media query ********************************************/
 
 @media (min-width: 1200px) and (max-width: 1920px) {
