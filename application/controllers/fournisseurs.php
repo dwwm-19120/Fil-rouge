@@ -2,11 +2,17 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 class Fournisseurs extends CI_Controller
 {
-    public function FourniAj()
-    {
-        $results=$this->categorie->options();
-        $data["option"]=$results;
 
+       /**
+ * \brief page d'ajout fournisseur
+ * \return  page formulaire d'ajout fournisseur
+ * \author Augustin LEGRIS
+ * \date 20/02/2020
+ */
+    public function fourniAj()
+    {
+        if($this->input->post())
+        {
         $nom = "/^[a-zA-Z]*$/";
         $telephone = "/^[0-9\.]{14}$/";
         $mail ="/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/";
@@ -16,8 +22,6 @@ class Fournisseurs extends CI_Controller
         $persJoin ="/^[a-zA-Z]*$/";
         $prix ="/[0-9]{1,3}(?:\.){1}[0-9]{0,2}/";
 
-
-        $res=$this->input->post();
         $this->form_validation->set_rules('nom','Nom',"required|regex_match[$nom]|is_unique[fournisseur.fourni_nom]",// is_unique evite les même ref en db
         array('required' => 'La %s est manquante','regex_match' => 'La %s est manquante','is_unique'=>'La %s existe déjà'));
         $this->form_validation->set_rules('telephone','Téléphone',"required|regex_match[$telephone]|is_unique[fournisseur.fourni_tel]",
@@ -38,8 +42,17 @@ class Fournisseurs extends CI_Controller
 
         if($this->form_validation->run() == FALSE)
         {
-            $this->templates->display('ajouts',$data);
+            $this->template_admin->displayad('fourniAjouts');
         }
         else
         {
+            $res=$this->input->post();
+            $data=array('fourni_nom'=> $res['fourni'])
+            $this->fournisseurs->fourniAj($data);
+            redirect('administration/fournisseurs');
+        }
+    }
+    else{
+        $this->template_admin->displayad('fourniAjouts');
+    }
 }
