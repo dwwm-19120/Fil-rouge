@@ -4,7 +4,7 @@ class Categories extends CI_model
     /**
      * \brief affichage toute la table
      * \return table de variables
-     * \autor Nicolas FOVIAUX
+     * \author Nicolas FOVIAUX
      * \date 19/02/2020
      */
     public function list()
@@ -16,7 +16,7 @@ class Categories extends CI_model
      * \brief affichage la table
      * \param id id du champs
      * \return table de variables
-     * \autor Nicolas FOVIAUX
+     * \author Nicolas FOVIAUX
      * \date 19/02/2020
      */
     public function catTable($id)
@@ -30,7 +30,7 @@ class Categories extends CI_model
      * \brief ajout d'une categorie
      * \param aj categorie a ajouté
      * \return table de variables
-     * \autor Nicolas FOVIAUX
+     * \author Nicolas FOVIAUX
      * \date 19/02/2020
      */
     public function catAj($aj)
@@ -43,7 +43,7 @@ class Categories extends CI_model
      * \param id id de la categorie
      * \param maj variable à ajouter
      * \return table de variables
-     * \autor Nicolas FOVIAUX
+     * \author Nicolas FOVIAUX
      * \date 19/02/2020
      */
     public function catMaj($id,$maj)
@@ -54,7 +54,7 @@ class Categories extends CI_model
     /**
      * \brief supression d'une categorie
      * \param id id de la categorie a supprimé
-     * \autor Nicolas FOVIAUX
+     * \author Nicolas FOVIAUX
      * \date 19/02/2020
      */
     public function delCat($id)

@@ -5,7 +5,7 @@
                 <div class="col-12 p-0">
                     <div class="row m-0" style="background:url('<?php echo base_url('assets/img/3_bandes.png');?>');">
                         <figure class="col-md-2 col-lg-2 d-none d-md-block p-0 ">
-                            <a class="navbar-brand" href="<?php echo base_url();?>" title="Vers l'accueil de Village Green">
+                            <a class="navbar-brand" href="<?=site_url('structure/acceuil');?>" title="Vers l'accueil de Village Green">
                                 <img class="d-inline-blocks" src="<?= base_url('assets/img/').'logo_village_green.png'?>" alt="logo de l'entreprise village green" title="logo">
                             </a>
                         </figure>
@@ -17,30 +17,33 @@
                                     </li>
 <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->                                  
                                     <div class="dropdown nav-link col-4">
+                                    <?php
+                                    /*
+                                    if session 
+                                    */
+                                    ?>
                                         <button type="button" data-toggle="dropdown">Espace Client<span class="void"></span>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <form class="drop-connexion" method="post" action="/">
-                                                <!--Cotée Gauche-->
+                                        <?php echo form_open("",'class="drop-connexion"');?>
+                                                <!-------------------------------------------Cotée Gauche----------------------------------------------------------->
                                                 <span>Êtes-vous déjà clients chez nous ?</span>
                                                 <input class="form-control" type="text" name="mail" placeholder="Adresse E-mail">
                                                 <input class="form-control" type="text" name="password" placeholder="Mot de passe">
                                                 <input class="form-check-control" type="checkbox" name="always_connexion">
                                                 <label for="always_connexion">Rester connectée ?</label>
-                                                <button name="connexion" class="btn btn-success">Se connecter maintenant</button>
+                                                <button name="connexion" class="btn btn-success ">Se connecter maintenant</button>
                                                 <label  class="text-center" for="connexion">
                                                     <a href="/" title="mot de passe perdue?">Vous avez oublié votre mot de passe?</a>
                                                 </label>
-                                            </form>
-                                            <form class="drop-inscription" method="post" action="/">
+                                        <?php echo form_close();?>
                                                 <!--Cotée Droite-->
                                                 <span>Vous n'êtes pas encore inscript ?</span>
                                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim </p>
-                                                <button name="inscription" class="btn btn-success">S'inscrire</button>
+                                                <a href="<?=site_url('structure/inscripCli')?>"><button name="inscription" class="btn btn-success btn-block">S'inscrire</button></a>
                                                 <label class="text-center" for="inscription">
-                                                    <a href="/" title="plus d'information sur les modalitées d'inscription">Plus d'information</a>
-                                                </label>
-                                            </form> 
+                                                    <a href="" title="plus d'information sur les modalitées d'inscription">Plus d'information</a>
+                                                </label> 
                                         </div>
                                     </div>
 <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
