@@ -21,7 +21,7 @@ class Fournisseur extends CI_model
      * \autor Augustin LEGRIS
      * \date 20/02/2020
      */
-    public function FourniDetail($id)
+    public function FourniTab($id)
     {
     $detail=$this->db->where("fourni_id",$id)->get('fournisseur'); // requêtes
 
