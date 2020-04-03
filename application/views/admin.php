@@ -27,7 +27,7 @@ if (isset($_SESSION["admin"]) && ($_SESSION["admin"]) == true)
         <li><a href="<?= site_url('administration/ajout');?>">ajouter un produit</a></li>
         <li><a href="">espace facturation</a></li>
         <li><a href="">espace commande</a></li>
-        <li><a href="">espace fournisseur</a></li>
+        <li><a href="<?= site_url('fournisseurs/fournisseur');?>">espace fournisseur</a></li>
         <li><a href="">espace relation clients</a></li>
         <li><a href="<?= site_url('administration/incsrip_personel');?>">ajout de personnel</a></li>
         <li><a href="<?= site_url('administration/categorie');?>">categories</a></li>
