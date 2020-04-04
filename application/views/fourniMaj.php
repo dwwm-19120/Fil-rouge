@@ -3,7 +3,7 @@
 
 <!----------------------------------------- Formulaire ajouts--------------------------------------------->
 <?php  // echo  validation_errors ();  ?>
-<?php echo form_open_multipart("fournisseurs/fourniAjouts", "class='container col-8'"); ?>
+<?php echo form_open_multipart("fournisseurs/fourniAjouts/".$fournisseur->fourni_id, "class='container col-8'"); ?>
 <div class=" container col-8">
     <div class="col-12">
             <fieldset class="row">
@@ -16,37 +16,37 @@
                 </div>
                 <div  class="form-group text-center offset-3 w-50">
                 <label for="telephone">Téléphone :</label>
-                <input type="text" id="telephone" name="telephone" class="form-control fontAwesome" placeholder="&#xf1c6; Téléphone..." value="<?php echo set_value('telephone'); ?>">
+                <input type="text" id="telephone" name="telephone" class="form-control fontAwesome" placeholder="&#xf1c6; Téléphone..." value="<?php echo set_value('telephone',$fournisseur->fourni_tel); ?>">
                 <?php echo form_error('telephone'); ?>
                 </div>
                 <div  class="form-group text-center offset-3 w-50">            
                 <label for="mail">E-mail :</label>
-                <input type="text" id="mail" name="mail" class="form-control fontAwesome" placeholder="&#xf1c6; Mail..." value="<?php echo set_value('mail'); ?>">
+                <input type="text" id="mail" name="mail" class="form-control fontAwesome" placeholder="&#xf1c6; Mail..." value="<?php echo set_value('mail',$fournisseur->fourni_mail); ?>">
                 <?php echo form_error('mail'); ?>              
                 </div>
                 <div  class="form-group text-center offset-3 w-50">
                 <label for="siret">Siret :</label>
-                <input type="number" id="siret" name="siret" class="form-control fontAwesome" placeholder="&#xf1c6; Siret..." value="<?php echo set_value('siret'); ?>">
+                <input type="number" id="siret" name="siret" class="form-control fontAwesome" placeholder="&#xf1c6; Siret..." value="<?php echo set_value('siret',$fournisseur->fourni_siret); ?>">
                 <?php echo form_error('siret'); ?>
                 </div>
                 <div  class="form-group text-center offset-3 w-50">
                 <label for="adresse">Adresse :</label>
-                <input type="text" id="adresse" name="adresse" class="form-control fontAwesome" placeholder="&#xf1c6; Adresse..." value="<?php echo set_value('adresse'); ?>">
+                <input type="text" id="adresse" name="adresse" class="form-control fontAwesome" placeholder="&#xf1c6; Adresse..." value="<?php echo set_value('adresse',$fournisseur->fourni_adresse); ?>">
                 <?php echo form_error('adresse'); ?>
                 </div>
                 <div  class="form-group text-center offset-3 w-50">
                 <label for="ville">Ville :</label>
-                <input type="text" id="ville" name="ville" class="form-control fontAwesome" placeholder="&#xf1c6; ville..." value="<?php echo set_value('ville'); ?>">
+                <input type="text" id="ville" name="ville" class="form-control fontAwesome" placeholder="&#xf1c6; ville..." value="<?php echo set_value('ville',$fournisseur->fourni_ville); ?>">
                 <?php echo form_error('ville'); ?>
                 </div>
                 <div  class="form-group text-center offset-3 w-50">
                 <label for="persJoin">Personne joignable :</label>
-                <input type="text" id="persJoin" name="persJoin" class="form-control fontAwesome" placeholder="&#xf1c6; persJoin..." value="<?php echo set_value('persJoin'); ?>">
+                <input type="text" id="persJoin" name="persJoin" class="form-control fontAwesome" placeholder="&#xf1c6; persJoin..." value="<?php echo set_value('persJoin',$fournisseur->fourni_persJoin); ?>">
                 <?php echo form_error('persJoin'); ?>
                 </div>
                 <div  class="form-group text-center offset-3 w-50">
                 <label for="prix">Prix :</label>
-                <input type="text" id="prix" name="prix" class="form-control fontAwesome" placeholder="&#xf1c6; prix..." value="<?php echo set_value('prix'); ?>">
+                <input type="text" id="prix" name="prix" class="form-control fontAwesome" placeholder="&#xf1c6; prix..." value="<?php echo set_value('prix',$fournisseur->fourni_prix); ?>">
                 <?php echo form_error('prix'); ?>
                 </div>
                 <div  class="form-group text-center offset-3 w-50">

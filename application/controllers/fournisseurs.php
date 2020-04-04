@@ -58,7 +58,15 @@ class Fournisseurs extends CI_Controller
         else
         {
             $res=$this->input->post();
-            $data=array('fourni_nom'=> $res['nom'])
+            $data=array('fourni_nom'=> $res['nom'];
+                        'fourni_tel'=> $res['telephone'];
+                        'fourni_mail'=> $res['mail'];
+                        'fourni_siret'=> $res['siret'];
+                        'fourni_adresse'=> $res['adresse'];
+                        'fourni_ville'=> $res['ville'];
+                        'fourni_pers_join'=> $res['persJoin'];
+                        'fourni_prix'=> $res['prix']       
+                        )
             $this->fournisseurs->fourniAj($data);
             redirect('fournisseurs/fournisseur');
         }
@@ -115,7 +123,15 @@ class Fournisseurs extends CI_Controller
         else
         {
             $res=$this->input->post();
-            $data=array('fourni_nom'=> $res['nom'])
+            $data=array('fourni_nom'=> $res['nom'];
+                        'fourni_tel'=> $res['telephone'];
+                        'fourni_mail'=> $res['mail'];
+                        'fourni_siret'=> $res['siret'];
+                        'fourni_adresse'=> $res['adresse'];
+                        'fourni_ville'=> $res['ville'];
+                        'fourni_pers_join'=> $res['persJoin'];
+                        'fourni_prix'=> $res['prix']
+                        )
             $this->fournisseurs->fourniMaj($id,$data);
             redirect('fournisseurs/fournisseur');
         }
