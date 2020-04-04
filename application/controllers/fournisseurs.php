@@ -58,7 +58,7 @@ class Fournisseurs extends CI_Controller
         else
         {
             $res=$this->input->post();
-            $data=array('fourni_nom'=> $res['fourni'])
+            $data=array('fourni_nom'=> $res['nom'])
             $this->fournisseurs->fourniAj($data);
             redirect('fournisseurs/fournisseur');
         }
@@ -75,7 +75,9 @@ class Fournisseurs extends CI_Controller
  */
     public function fourniMaj($id){
 
-        $data['fournisseur']=$this->categories->FourniTab($id);
+        $data['fournisseur']=$this->fournisseurs->FourniTab($id);
+        $data["fournisseur"]=$fournisseur;
+
 
         if($this->input->post())
         {
@@ -113,7 +115,7 @@ class Fournisseurs extends CI_Controller
         else
         {
             $res=$this->input->post();
-            $data=array('fourni_nom'=> $res['fourni'])
+            $data=array('fourni_nom'=> $res['nom'])
             $this->fournisseurs->fourniMaj($id,$data);
             redirect('fournisseurs/fournisseur');
         }
