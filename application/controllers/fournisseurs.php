@@ -140,4 +140,8 @@ class Fournisseurs extends CI_Controller
         $this->template_admin->displayad('fourniAjouts');
     }
     }
+
+    function delFourni(){
+        
+    }
 }
